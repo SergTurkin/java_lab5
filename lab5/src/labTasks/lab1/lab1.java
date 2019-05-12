@@ -1,9 +1,11 @@
 package labTasks.lab1;
 
+import sample.Controller;
+
 public class lab1 {
     public static void main(String[] args) {
         if (args.length != 3) {
-            System.out.println("Incorrect number options");
+            Controller.instance.resultTextBox.setText("Incorrect number options");
         }
         double result, op1, op2;
         try {
@@ -13,25 +15,25 @@ public class lab1 {
             switch (args[1]) {
                 case "+":
                     result = op1 + op2;
-                    System.out.println("Addition = " + result);
+                    Controller.instance.resultTextBox.setText("Addition = " + result);
                     break;
                 case "-":
                     result = op1 - op2;
-                    System.out.println("Subtraction = " + result);
+                    Controller.instance.resultTextBox.setText("Subtraction = " + result);
                     break;
                 case "/":
                     result = op1 / op2;
-                    System.out.println("Division = " + result);
+                    Controller.instance.resultTextBox.setText("Division = " + result);
                     break;
                 case "*":
                     result = op1 * op2;
-                    System.out.println("Multiplication = " + result);
+                    Controller.instance.resultTextBox.setText("Multiplication = " + result);
                     break;
                 default:
-                    System.out.println("Incorrect operation!");
+                    Controller.instance.resultTextBox.setText("Incorrect operation!");
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            Controller.instance.resultTextBox.setText("Incorrect operation!");
         }
     }
 }

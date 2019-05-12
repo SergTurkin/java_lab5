@@ -1,9 +1,5 @@
 package sample;
 
-import java.io.PrintStream;
-import java.net.URL;
-import java.util.PrimitiveIterator;
-import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
-
 import labTasks.lab1.lab1;
 import labTasks.lab2.lab2;
 import labTasks.lab3.lab3;
@@ -20,6 +15,9 @@ import labTasks.lab4.lab4;
 
 
 public class Controller {
+
+
+    public static Controller instance = null;
 
     @FXML
     private RadioButton RBlab1;
@@ -43,19 +41,17 @@ public class Controller {
     private Label resultlbl;
 
     @FXML
-    public  TextArea resultTextBox;
+    public TextArea resultTextBox;
 
     private ToggleGroup group = new ToggleGroup();
 
     @FXML
     private Button startBtn;
 
+
     @FXML
     void initialize() {
-        Console console = new Console(resultTextBox);
-        PrintStream ps = new PrintStream(console, true);
-        System.setOut(ps);
-        System.setErr(ps);
+        instance = this;
 
         tasklbl.setVisible(false);
         taskTextBox.setVisible(false);
@@ -110,10 +106,11 @@ public class Controller {
     }
 
     public void startTask() throws InterruptedException {
-        if (!resultTextBox.isVisible()){
+
+        if (!resultTextBox.isVisible()) {
             resultTextBox.setVisible(true);
         }
-        if (!resultlbl.isVisible()){
+        if (!resultlbl.isVisible()) {
             resultlbl.setVisible(true);
         }
 

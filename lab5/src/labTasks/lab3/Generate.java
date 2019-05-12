@@ -6,10 +6,14 @@ import java.util.Random;
 class Generate {
     private static int stock = -1;
 
-    synchronized void put(){
+    synchronized void put(StringBuilder buf, StringBuilder fl, int i, int number){
         Random rand = new Random();
         stock = rand.nextInt(100);
-        System.out.println(Thread.currentThread().getName() + " " + stock);
+        buf.append(Thread.currentThread().getName()).append(" ").append(stock).append("\n");
+        if (i == number - 1){
+            fl.append("1");
+        }
+
         notify();
         try{
             wait();
@@ -19,7 +23,7 @@ class Generate {
         }
     }
 
-    synchronized void get()  {
+    synchronized void get(StringBuilder buf, StringBuilder fl, int i, int number)  {
         if (stock == -1){
             try{
                 wait();
@@ -28,7 +32,10 @@ class Generate {
                 e.printStackTrace();
             }
         }
-        System.out.println(Thread.currentThread().getName() + " " + stock);
+        buf.append(Thread.currentThread().getName()).append(" ").append(stock).append("\n");
+        if (i == number - 1){
+            fl.append("2");
+        }
         stock = -1;
         notify();
     }
