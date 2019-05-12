@@ -56,7 +56,10 @@ public class lab4 {
     public static void main(String[] args) throws InterruptedException {
         try {
 
-
+            if (args.length != 2) {
+                Controller.instance.resultTextBox.setText("Incorrect number options");
+                return;
+            }
             StringBuilder buf = new StringBuilder();
             int NumberOfThreads = Integer.parseInt(args[0]);
             int NumberOfLines = Integer.parseInt(args[1]);

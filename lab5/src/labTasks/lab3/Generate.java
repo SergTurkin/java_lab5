@@ -1,18 +1,18 @@
 package labTasks.lab3;
 
+import sample.Controller;
+
 import java.util.Random;
 
 
 class Generate {
     private static int stock = -1;
 
-    synchronized void put(StringBuilder buf, StringBuilder fl, int i, int number){
+    synchronized void put(StringBuilder buf){
         Random rand = new Random();
         stock = rand.nextInt(100);
         buf.append(Thread.currentThread().getName()).append(" ").append(stock).append("\n");
-        if (i == number - 1){
-            fl.append("1");
-        }
+
 
         notify();
         try{
@@ -23,7 +23,7 @@ class Generate {
         }
     }
 
-    synchronized void get(StringBuilder buf, StringBuilder fl, int i, int number)  {
+    synchronized void get(StringBuilder buf, int i, int number)  {
         if (stock == -1){
             try{
                 wait();
@@ -34,7 +34,7 @@ class Generate {
         }
         buf.append(Thread.currentThread().getName()).append(" ").append(stock).append("\n");
         if (i == number - 1){
-            fl.append("2");
+            Controller.instance.resultTextBox.setText(buf.toString());
         }
         stock = -1;
         notify();

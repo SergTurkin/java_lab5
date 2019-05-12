@@ -6,6 +6,7 @@ public class lab1 {
     public static void main(String[] args) {
         if (args.length != 3) {
             Controller.instance.resultTextBox.setText("Incorrect number options");
+            return;
         }
         double result, op1, op2;
         try {

@@ -6,6 +6,10 @@ import sample.Controller;
 public class lab2 {
     public static void main(String[] args) {
         try {
+            if (args.length != 1) {
+                Controller.instance.resultTextBox.setText("Incorrect number options");
+                return;
+            }
             StringBuilder buf = new StringBuilder();
             Product[] start = new Product[4];
             start[0] = new Book();
